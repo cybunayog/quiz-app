@@ -3,6 +3,7 @@ import {View, StyleSheet, StatusBar, Text, SafeAreaView} from 'react-native';
 
 import TEMP_QUESTIONS from '../data/computers';
 import {Button, ButtonContainer} from '../components/Button';
+import {Alert} from '../components/Alert';
 
 const styles = StyleSheet.create({
   container: {
@@ -29,26 +30,31 @@ class Quiz extends React.Component {
     correctCount: 0,
     totalCount: TEMP_QUESTIONS.length,
     activeQuestionIndex: 0,
+    answered: false,
+    answerCorrect: false,
   };
 
   // Updating state
   answer = (correct) => {
     this.setState(state => {
-      const nextState = {};
+      const nextState = {answered: true};
 
       if (correct) {
         nextState.correctCount = state.correctCount + 1;
+        nextState.answerCorrect = true;
+      } else {
+        nextState.answerCorrect = false;
       }
 
       return nextState;
     }, () => {
-      this.nextQuestion();
+      setTimeout(() => this.nextQuestion(), 750);
     });
   }
 
   nextQuestion = () => {
     this.setState(state => {
-      const nextIndex = state.activeQuestionIndex + 1;
+      let nextIndex = state.activeQuestionIndex + 1;
 
       if (nextIndex >= state.totalCount) {
         nextIndex = 0;
@@ -56,6 +62,7 @@ class Quiz extends React.Component {
 
       return {
         activeQuestionIndex: nextIndex,
+        answered: false
       }
     });
   };
@@ -82,6 +89,7 @@ class Quiz extends React.Component {
 
           <Text style={styles.text}>{`${this.state.correctCount}/${this.state.totalCount}`}</Text>
         </SafeAreaView>
+        <Alert correct={this.state.answerCorrect} visible={this.state.answered} />
       </View>
     );
   }
