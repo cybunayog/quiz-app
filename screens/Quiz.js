@@ -62,7 +62,7 @@ class Quiz extends React.Component {
       return {
         activeQuestionIndex: nextIndex,
         answered: false
-      }
+      };
     });
   };
 
@@ -71,7 +71,7 @@ class Quiz extends React.Component {
     const questions = this.props.navigation.getParam("questions", []);
     const question = questions[this.state.activeQuestionIndex];
     return (
-      <View style={styles.container}>
+      <View style={[styles.container, {backgroundColor: this.props.navigation.getParam("color")}]}>
         <StatusBar barStyle="light-content" />
         <SafeAreaView style={styles.safearea}>
         <View>

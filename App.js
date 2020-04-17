@@ -16,8 +16,11 @@ const MainStack = createStackNavigator({
     screen: Quiz,
     // Object destructring
     navigationOptions: ({navigation}) => ({
-      headerTitle: navigation.getParam("title")
-    })
+      headerTitle: navigation.getParam("title"),
+      headerStyle: {
+        beckgroundColor: navigation.getParam("color")
+      },
+    }),
   },
 });
 

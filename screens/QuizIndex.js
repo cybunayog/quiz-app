@@ -12,17 +12,17 @@ export default ({navigation}) => (
     <StatusBar barStyle='dark-content' />
     <RowItem
       name="Space"
-      onPress={() => navigation.navigate('Quiz', {title: 'Space', questions: spaceQuestions})}
+      onPress={() => navigation.navigate('Quiz', {title: 'Space', questions: spaceQuestions, color: "#36b1f0"})}
       color="#36b1f0"
     />
     <RowItem
       name="Western"
-      onPress={() => navigation.navigate('Quiz', {title: 'Western', questions: westernsQuestions})}
+      onPress={() => navigation.navigate('Quiz', {title: 'Western', questions: westernsQuestions, color: "#799496"})}
       color="#799496"
     />
     <RowItem
       name="Computers"
-      onPress={() => navigation.navigate('Quiz', {title: 'Computers', questions: computerQuestions})}
+      onPress={() => navigation.navigate('Quiz', {title: 'Computers', questions: computerQuestions, color: "#49475B"})}
       color="#49475B"
     />
   </ScrollView>
