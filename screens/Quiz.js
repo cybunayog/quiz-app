@@ -1,7 +1,6 @@
 import React from 'react';
 import {View, StyleSheet, StatusBar, Text, SafeAreaView} from 'react-native';
 
-import TEMP_QUESTIONS from '../data/computers';
 import {Button, ButtonContainer} from '../components/Button';
 import {Alert} from '../components/Alert';
 
@@ -28,7 +27,7 @@ const styles = StyleSheet.create({
 class Quiz extends React.Component {
   state = {
     correctCount: 0,
-    totalCount: TEMP_QUESTIONS.length,
+    totalCount: this.props.navigation.getParam("questions", []).length,
     activeQuestionIndex: 0,
     answered: false,
     answerCorrect: false,
@@ -68,7 +67,9 @@ class Quiz extends React.Component {
   };
 
   render() {
-    const question = TEMP_QUESTIONS[this.state.activeQuestionIndex];
+    // const question = TEMP_QUESTIONS[this.state.activeQuestionIndex];
+    const questions = this.props.navigation.getParam("questions", []);
+    const question = questions[this.state.activeQuestionIndex];
     return (
       <View style={styles.container}>
         <StatusBar barStyle="light-content" />

@@ -14,6 +14,10 @@ const MainStack = createStackNavigator({
   },
   Quiz: {
     screen: Quiz,
+    // Object destructring
+    navigationOptions: ({navigation}) => ({
+      headerTitle: navigation.getParam("title")
+    })
   },
 });
 
